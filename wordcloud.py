@@ -142,8 +142,9 @@ color:black
 
 if __name__ == "__main__":
     file_name = "alice.txt"
+    #file_name = "beemovie.txt"
     output_file = "result.html"
-    total_words, word_co = get_words_count(file_name, n_highest=500)
+    total_words, word_co = get_words_count(file_name, n_highest=250)
     # print(word_co)
     create_word_cloud_html(word_co, output_file)
     webbrowser.open(output_file)
