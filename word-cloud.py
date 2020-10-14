@@ -18,24 +18,9 @@ min_font = 10
 Returns the approximate pixel dimensions of a string of text while taking into account its font and font size
 
 :param text: an english word as a string
-:param points: the font size
-# :param font: the font family/ style
+:param points: the font 
 """
 def get_text_dimensions(text, points):
-
-        # class SIZE(ctypes.Structure):
-        #         _fields_ = [("cx", ctypes.c_long), ("cy", ctypes.c_long)]
-        #
-        # hdc = ctypes.windll.user32.GetDC(None)
-        # hfont = ctypes.windll.gdi32.CreateFontA(points, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, font)
-        # hfont_old = ctypes.windll.gdi32.SelectObject(hdc, hfont)
-        #
-        # size = SIZE(0, 0)
-        # ctypes.windll.gdi32.GetTextExtentPoint32A(hdc, text, len(text), ctypes.byref(size))
-        #
-        # ctypes.windll.gdi32.SelectObject(hdc, hfont_old)
-        # ctypes.windll.gdi32.DeleteObject(hfont)
-
         return (math.ceil(len(text) * points * 0.6) , points)
 
 
