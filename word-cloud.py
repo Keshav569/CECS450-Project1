@@ -1,19 +1,11 @@
-import ctypes
 import re
 from collections import Counter
 import random
-import numpy
+import math
 
-# x = 200
-# y = 200
-# w = 300
-# h = 50
-# word = 'testing'
 fill = 'white'
 stroke = 'red'
 stroke_width = 3
-# size = 50
-# rotate = 0
 font = 'Times New Roman'
 point = 50
 svg_array = []
@@ -22,30 +14,29 @@ max_font = 50  # The max font will actually be this number added to mean_font_pa
 mean_font_padding = 3
 min_font = 10
 
-
 """
 Returns the approximate pixel dimensions of a string of text while taking into account its font and font size
 
 :param text: an english word as a string
 :param points: the font size
-:param font: the font family/ style
+# :param font: the font family/ style
 """
-def get_text_dimensions(text, points, font):
+def get_text_dimensions(text, points):
 
-        class SIZE(ctypes.Structure):
-                _fields_ = [("cx", ctypes.c_long), ("cy", ctypes.c_long)]
+        # class SIZE(ctypes.Structure):
+        #         _fields_ = [("cx", ctypes.c_long), ("cy", ctypes.c_long)]
+        #
+        # hdc = ctypes.windll.user32.GetDC(None)
+        # hfont = ctypes.windll.gdi32.CreateFontA(points, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, font)
+        # hfont_old = ctypes.windll.gdi32.SelectObject(hdc, hfont)
+        #
+        # size = SIZE(0, 0)
+        # ctypes.windll.gdi32.GetTextExtentPoint32A(hdc, text, len(text), ctypes.byref(size))
+        #
+        # ctypes.windll.gdi32.SelectObject(hdc, hfont_old)
+        # ctypes.windll.gdi32.DeleteObject(hfont)
 
-        hdc = ctypes.windll.user32.GetDC(None)
-        hfont = ctypes.windll.gdi32.CreateFontA(points, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, font)
-        hfont_old = ctypes.windll.gdi32.SelectObject(hdc, hfont)
-
-        size = SIZE(0, 0)
-        ctypes.windll.gdi32.GetTextExtentPoint32A(hdc, text, len(text), ctypes.byref(size))
-
-        ctypes.windll.gdi32.SelectObject(hdc, hfont_old)
-        ctypes.windll.gdi32.DeleteObject(hfont)
-
-        return (len(text) * points * 0.6 , size.cy)
+        return (math.ceil(len(text) * points * 0.6) , points)
 
 
 """
@@ -87,6 +78,48 @@ def createSVG(word, x, y, txt_dim, stroke, stroke_width, fill, point, rotate=0):
             'text-anchor="middle">' + word + '</text></svg>')  # Set the text inside the rectangle
 
 
+"""
+Using spiral motion (derivative of the equation of a spiral), check every step with all bounding boxes that exist
+in the set of SVGs so far. Once there is no collision, return the coordinates.
+:param bounds: an array that stores all 4 corners of text boxes
+:param x: x coordinate where the text is trying to be placed
+:param y: y coordinate where the text is trying to be placed
+:param width: width of the rectangle surrounding the text
+:param height: height of the rectangle surrounding the text
+"""
+def nearestNonCollision(bounds, x, y, width, height):
+    flag = False
+    left, right, top, bottom = x, x + width, y, y + height
+    dx, dy = 0, 0
+    while True:
+        dx += 5
+        dy += 5
+        left += dx
+        right += dx
+        top += dy
+        bottom += dy
+        print(dx, dy)
+        for box in bounds:
+            # If self.right >= other.left & self.left <= other.right & self.top >= other.bottom & self.bottom <= other.top
+            if right >= box[0] and left <= box[2] and top >= box[3] and bottom <= box[1]:
+                flag = False
+            else:
+                flag = True
+        if flag:
+            return x, y
+    dx = 0
+    dy = 0
+    # while True:
+
+    # return x, y
+
+
+"""
+Checks if there
+"""
+def isCollision():
+    pass
+
 total_words, word_freq = get_words_count(filename, 500)
 
 """
@@ -116,29 +149,38 @@ for word in word_freq:
         word_font_size.append((word[0], font_size))  # Change the number of occurrences to the relative font size to be displayed
 
 """
-Pass all relative data to generate SVGs for each word along with their respective CSS attributes for positioning
+Pass all relative data to generate SVGs for each word while generating the CSS position for each word
 """
 css_pos = '<style> svg { position: absolute; }'
-random.shuffle(word_font_size)
-dx = 0
-dy = 0
-for word in word_font_size:
-    txt_dim = get_text_dimensions(word[0], word[1], font)
-    svg_array.append(createSVG(word[0], dx, dy, txt_dim, stroke, stroke_width, fill, word[1]))
-    css_pos += '._' + str(dx) + '_' + str(dy) + ' { left: ' + str(dx) + 'px; top: ' + str(dy) + 'px; } '
-    print(word[0], txt_dim, stroke, stroke_width, fill, point)
-    dx += 50
-    if dx % 500 == 0:
-        dy += 100
-        dx -= 500
-css_pos += '</style>'
+bounds = []
+startx, starty = 250, 500
+padding = 50
+random.shuffle(word_font_size)  # Randomize the word/ font size indices
+x = 0
+y = 0
+for i in range(len(word_font_size)):
+    txt_dim = get_text_dimensions(word_font_size[i][0], word_font_size[i][1])
+    if i == 0:
+        x = startx
+        y = starty
+    else:
+        x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1])
+    svg_array.append(createSVG(word_font_size[i][0], x, y, txt_dim, stroke, stroke_width, fill, word_font_size[i][1]))
+    css_pos += '._' + str(x) + '_' + str(y) + ' { left: ' + str(x) + 'px; top: ' + str(y) + 'px; } '
+    print(word_font_size[i][0], txt_dim, stroke, stroke_width, fill, point)
+    bounds.append((x, x + txt_dim[0], y, y + txt_dim[1]))
 
+    # dx += 50
+    # if dx % 500 == 0:
+    #     dy += 100
+    #     dx -= 500
+css_pos += '</style>'
+print(bounds)
 """
 Input all CSS and SVGs into the HTML string for rendering
 """
 
 html_final = '<!DOCTYPE html><html>' + css_pos + '<body><div>'
-# Randomize the index of SVGs
 for svg in svg_array:
         html_final += svg
 html_final += '</div></body></html>'
