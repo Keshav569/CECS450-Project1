@@ -74,35 +74,26 @@ in the set of SVGs so far. Once there is no collision, return the coordinates.
 :param height: height of the rectangle surrounding the text
 """
 def nearestNonCollision(bounds, x, y, width, height):
-    flag = False
+    flag = True
     left, right, top, bottom = x, x + width, y, y + height
     dx, dy = 0, 0
     while True:
-
         print(dx, dy)
         for box in bounds:
-            # If self.right >= other.left & self.left <= other.right & self.top >= other.bottom & self.bottom <= other.top
-            print('\tright, \tleft')
-            print('x', right, '>=', box[0], right >= box[0])
-            print('\tleft, \tright')
-            print('x', left, '<=', box[1], left <= box[1])
-            print('\ttop, \tbottom')
-            print('y', top, '>=', box[3], top >= box[3])
-            print('\tbottom, \ttop')
-            print('y', bottom, '<=', box[2], bottom <= box[2])
-            print('and: ' + str(right >= box[0] and left <= box[1] and top >= box[3] and bottom <= box[2]))
-            if right >= box[0] and left <= box[1] and top >= box[3] and bottom <= box[2]:  # If not collision
+            print('and: ' + str(right > box[0] and left < box[1] and top < box[3] and bottom > box[2]))
+            if right > box[0] and left < box[1] and top < box[3] and bottom > box[2]:  # If collision
                 print('collision')
-                flag = True
-            else:
                 dx += 5
                 dy += 5
                 left += dx
                 right += dx
                 top += dy
                 bottom += dy
-        if flag:
-            return x, y
+                flag = True
+            else:
+                flag = False
+        if not flag:
+            return left, top
     # dx = 0
     # dy = 0
     # while True:
