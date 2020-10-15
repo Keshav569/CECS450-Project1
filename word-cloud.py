@@ -19,7 +19,6 @@ Returns the approximate pixel dimensions of a string of text while taking into a
 
 :param text: an english word as a string
 :param points: the font size
-# :param font: the font family/ style
 """
 def get_text_dimensions(text, points):
         return (math.ceil(len(text) * points * 0.6) , points)
@@ -100,12 +99,6 @@ def nearestNonCollision(bounds, x, y, width, height):
 
     # return x, y
 
-
-"""
-Checks if there
-"""
-def isCollision():
-    pass
 
 total_words, word_freq = get_words_count(filename, 500)
 
