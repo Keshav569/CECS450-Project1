@@ -18,7 +18,8 @@ min_font = 10
 Returns the approximate pixel dimensions of a string of text while taking into account its font and font size
 
 :param text: an english word as a string
-:param points: the font 
+:param points: the font size
+# :param font: the font family/ style
 """
 def get_text_dimensions(text, points):
         return (math.ceil(len(text) * points * 0.6) , points)
@@ -77,23 +78,33 @@ def nearestNonCollision(bounds, x, y, width, height):
     left, right, top, bottom = x, x + width, y, y + height
     dx, dy = 0, 0
     while True:
-        dx += 5
-        dy += 5
-        left += dx
-        right += dx
-        top += dy
-        bottom += dy
+
         print(dx, dy)
         for box in bounds:
             # If self.right >= other.left & self.left <= other.right & self.top >= other.bottom & self.bottom <= other.top
-            if right >= box[0] and left <= box[2] and top >= box[3] and bottom <= box[1]:
-                flag = False
-            else:
+            print('\tright, \tleft')
+            print('x', right, '>=', box[0], right >= box[0])
+            print('\tleft, \tright')
+            print('x', left, '<=', box[1], left <= box[1])
+            print('\ttop, \tbottom')
+            print('y', top, '>=', box[3], top >= box[3])
+            print('\tbottom, \ttop')
+            print('y', bottom, '<=', box[2], bottom <= box[2])
+            print('and: ' + str(right >= box[0] and left <= box[1] and top >= box[3] and bottom <= box[2]))
+            if right >= box[0] and left <= box[1] and top >= box[3] and bottom <= box[2]:  # If not collision
+                print('collision')
                 flag = True
+            else:
+                dx += 5
+                dy += 5
+                left += dx
+                right += dx
+                top += dy
+                bottom += dy
         if flag:
             return x, y
-    dx = 0
-    dy = 0
+    # dx = 0
+    # dy = 0
     # while True:
 
     # return x, y
@@ -150,6 +161,7 @@ for i in range(len(word_font_size)):
         y = starty
     else:
         x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1])
+        print('new coords: ' + str(x) + ', ' + str(y))
     svg_array.append(createSVG(word_font_size[i][0], x, y, txt_dim, stroke, stroke_width, fill, word_font_size[i][1]))
     css_pos += '._' + str(x) + '_' + str(y) + ' { left: ' + str(x) + 'px; top: ' + str(y) + 'px; } '
     print(word_font_size[i][0], txt_dim, stroke, stroke_width, fill, point)
