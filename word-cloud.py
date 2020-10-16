@@ -4,8 +4,8 @@ import random
 import math
 
 fill = 'white'
-stroke = 'red'
-stroke_width = 3
+stroke = 'white'
+stroke_width = 0
 font = 'Times New Roman'
 point = 50
 svg_array = []
@@ -76,29 +76,46 @@ def nearestNonCollision(bounds, x, y, width, height):
     flag = True
     left, right, top, bottom = x, x + width, y, y + height
     dx, dy = 0, 0
+    count = 0
+    direction = len(bounds) % 4
     while True:
-        print(dx, dy)
+        if dx != len(bounds) and dy != len(bounds):
+            dx, dy = count, count
         for box in bounds:
-            print('and: ' + str(right > box[0] and left < box[1] and top < box[3] and bottom > box[2]))
+            # print('and: ' + str(right > box[0] and left < box[1] and top < box[3] and bottom > box[2]))
             if right > box[0] and left < box[1] and top < box[3] and bottom > box[2]:  # If collision
+                if count % 4 == 2:
+                    dx += 1
+                    dx = -dx
+                elif count % 4 == 3:
+                    dy = -dy
+                    dy += 1
+                top += int(dy)
+                bottom += int(dy)
+                left += int(dx)
+                right += int(dx)
+                print(dx, dy)
+                print('count: ' + str(count))
+                print('mod: ' + str(count % 2))
+
                 print('collision')
-                dx += 5
-                dy += 5
-                left += dx
-                right += dx
-                top += dy
-                bottom += dy
-                flag = True
-            else:
-                flag = False
+                # if dx < 0:
+                #     dx -= width / 2
+                # if dy < 0:
+                #     dy -= height / 2
+                count += 1  # Update the amount of collisions
+                print(dx, dy)
+                print(left, right)
+                flag = True  # Set flag to true, so that all potential collisions are checked again
         if not flag:
-            return left, top
-    # dx = 0
-    # dy = 0
-    # while True:
+            return left, top  # Return the new x/y (left, right)
+        flag = False  # Reset the collision flag so that if there are no collisions in next iteration, return x/y
 
-    # return x, y
-
+"""
+Checks if there
+"""
+def isCollision():
+    pass
 
 total_words, word_freq = get_words_count(filename, 500)
 
@@ -133,28 +150,25 @@ Pass all relative data to generate SVGs for each word while generating the CSS p
 """
 css_pos = '<style> svg { position: absolute; }'
 bounds = []
-startx, starty = 250, 500
+startx, starty = 700, 300
 padding = 50
 random.shuffle(word_font_size)  # Randomize the word/ font size indices
-x = 0
-y = 0
+x = startx
+y = starty
 for i in range(len(word_font_size)):
     txt_dim = get_text_dimensions(word_font_size[i][0], word_font_size[i][1])
-    if i == 0:
-        x = startx
-        y = starty
-    else:
-        x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1])
-        print('new coords: ' + str(x) + ', ' + str(y))
+    # if i == 0:
+    #     x = startx
+    #     y = starty
+    # else:
+    x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1])
+    print('new coords: ' + str(x) + ', ' + str(y))
     svg_array.append(createSVG(word_font_size[i][0], x, y, txt_dim, stroke, stroke_width, fill, word_font_size[i][1]))
     css_pos += '._' + str(x) + '_' + str(y) + ' { left: ' + str(x) + 'px; top: ' + str(y) + 'px; } '
     print(word_font_size[i][0], txt_dim, stroke, stroke_width, fill, point)
     bounds.append((x, x + txt_dim[0], y, y + txt_dim[1]))
+    x, y = startx, starty
 
-    # dx += 50
-    # if dx % 500 == 0:
-    #     dy += 100
-    #     dx -= 500
 css_pos += '</style>'
 print(bounds)
 """
