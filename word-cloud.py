@@ -13,6 +13,9 @@ filename = 'alice.txt'
 max_font = 50  # The max font will actually be this number added to mean_font_padding
 mean_font_padding = 3
 min_font = 10
+startx, starty = 700, 500
+cloud_bounds = (startx - 450, startx + 450, starty - 200, starty + 200)
+top_words = 500
 
 """
 Returns the approximate pixel dimensions of a string of text while taking into account its font and font size
@@ -72,44 +75,31 @@ in the set of SVGs so far. Once there is no collision, return the coordinates.
 :param width: width of the rectangle surrounding the text
 :param height: height of the rectangle surrounding the text
 """
-def nearestNonCollision(bounds, x, y, width, height):
+def nearestNonCollision(bounds, x, y, width, height, cloud_bounds):
     flag = True
-    left, right, top, bottom = x, x + width, y, y + height
-    dx, dy = 0, 0
-    count = 0
-    direction = len(bounds) % 4
+    count = 1
     while True:
-        if dx != len(bounds) and dy != len(bounds):
-            dx, dy = count, count
+        placement_attempt = (random.randint(cloud_bounds[0], cloud_bounds[1]), random.randint(cloud_bounds[2], cloud_bounds[3]))
+        left, right, top, bottom = placement_attempt[0], placement_attempt[0] + width, placement_attempt[1], placement_attempt[1] + height
         for box in bounds:
-            # print('and: ' + str(right > box[0] and left < box[1] and top < box[3] and bottom > box[2]))
             if right > box[0] and left < box[1] and top < box[3] and bottom > box[2]:  # If collision
-                if count % 4 == 2:
-                    dx += 1
-                    dx = -dx
-                elif count % 4 == 3:
-                    dy = -dy
-                    dy += 1
-                top += int(dy)
-                bottom += int(dy)
-                left += int(dx)
-                right += int(dx)
-                print(dx, dy)
-                print('count: ' + str(count))
-                print('mod: ' + str(count % 2))
-
-                print('collision')
-                # if dx < 0:
-                #     dx -= width / 2
-                # if dy < 0:
-                #     dy -= height / 2
-                count += 1  # Update the amount of collisions
-                print(dx, dy)
-                print(left, right)
+                print('collision', str(len(bounds)))
                 flag = True  # Set flag to true, so that all potential collisions are checked again
         if not flag:
-            return left, top  # Return the new x/y (left, right)
+            print(right, left, top, bottom)
+            print(cloud_bounds)
+            if not (right > cloud_bounds[0] and left < cloud_bounds[1] and top < cloud_bounds[3] and bottom > cloud_bounds[2]):
+                print(str(right) + ',' + str(top) + ' not in bounds')
+                # continue
+            return left, top  # Return the new x/y (left, top)
         flag = False  # Reset the collision flag so that if there are no collisions in next iteration, return x/y
+        if count % 4 == 2:
+            left += count
+            right += count
+        elif count % 4 == 3:
+            top += count
+            bottom += count
+
 
 """
 Checks if there
@@ -117,7 +107,7 @@ Checks if there
 def isCollision():
     pass
 
-total_words, word_freq = get_words_count(filename, 500)
+total_words, word_freq = get_words_count(filename, top_words)
 
 """
 Find the occurrences of words in the data set, find the mean amount of occurrences of words in the data set, and 
@@ -150,9 +140,25 @@ Pass all relative data to generate SVGs for each word while generating the CSS p
 """
 css_pos = '<style> svg { position: absolute; }'
 bounds = []
-startx, starty = 700, 300
-padding = 50
+top_words = [word_font_size[0], word_font_size[1], word_font_size[2]]
 random.shuffle(word_font_size)  # Randomize the word/ font size indices
+flags = [True, True, True]
+for i in range(len(word_font_size)):
+    if word_font_size[i] == top_words[0] and flags[0]:
+        flags[0] = False
+        word_font_size[i] = word_font_size[0]
+        word_font_size[0] = top_words[0]
+        print(word_font_size[i], word_font_size[0])
+    if word_font_size[i] == top_words[1] and flags[1]:
+        flags[0] = False
+        word_font_size[i] = word_font_size[1]
+        word_font_size[1] = top_words[1]
+        print(word_font_size[i])
+    if word_font_size[i] == top_words[2] and flags[2]:
+        flags[0] = False
+        word_font_size[i] = word_font_size[2]
+        word_font_size[2] = top_words[2]
+        print(word_font_size[i])
 x = startx
 y = starty
 for i in range(len(word_font_size)):
@@ -161,7 +167,7 @@ for i in range(len(word_font_size)):
     #     x = startx
     #     y = starty
     # else:
-    x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1])
+    x, y = nearestNonCollision(bounds, x, y, txt_dim[0], txt_dim[1], cloud_bounds)
     print('new coords: ' + str(x) + ', ' + str(y))
     svg_array.append(createSVG(word_font_size[i][0], x, y, txt_dim, stroke, stroke_width, fill, word_font_size[i][1]))
     css_pos += '._' + str(x) + '_' + str(y) + ' { left: ' + str(x) + 'px; top: ' + str(y) + 'px; } '
