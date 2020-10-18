@@ -53,6 +53,8 @@ width/ height at a specified x/ y location. These SVG elements can then be inser
 :param stroke: the color of the bounding box around the rectangle
 :param stroke_width: the pixel size of the line ("stroke") that surrounds the rectangle
 :param point: the font size of the text
+:param percent_occurrence: the percentage of the document that the word makes up
+:param colors: the colors that are selected for word colors
 :param rotate: the degree of rotation around the origin of the rectangle (0, 0)
 """
 def createSVG(word, x, y, txt_dim, stroke, stroke_width, fill, point, percent_occurrence,
@@ -75,6 +77,7 @@ in the set of SVGs so far. Once there is no collision, return the coordinates.
 :param y: y coordinate where the text is trying to be placed
 :param width: width of the rectangle surrounding the text
 :param height: height of the rectangle surrounding the text
+:param cloud_bounds: the x/y coordinates that SVGs are allowed to be placed within
 """
 def nearestNonCollision(bounds, x, y, width, height, cloud_bounds):
     flag = True
@@ -97,13 +100,6 @@ def nearestNonCollision(bounds, x, y, width, height, cloud_bounds):
                 # continue
             return left, top  # Return the new x/y (left, top)
         flag = False  # Reset the collision flag so that if there are no collisions in next iteration, return x/y
-
-        # if count % 4 == 2:
-        #     left += count
-        #     right += count
-        # elif count % 4 == 3:
-        #     top += count
-        #     bottom += count
 
 
 total_words, word_freq = get_words_count(filename, top_words)
