@@ -5,8 +5,10 @@ import string
 import webbrowser
 from collections import Counter
 
+#removes all punctuation from a string
 exclude = set(string.punctuation)
 
+#returns # of common words from a .txt file 
 def get_words_count(filename, n_highest=100):
     words = re.findall(r"\w+", open(filename).read().lower())
     total_words = len(words)
