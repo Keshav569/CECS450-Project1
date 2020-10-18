@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[95]:
+# In[115]:
 
 
 import sys
@@ -18,7 +18,6 @@ exclude = set(string.punctuation)
 def get_words_count(filename, n_highest=100):
     words = re.findall(r"\w+", open(filename).read().lower())
     total_words = len(words)
-    print(total_words)
     nltk.download('stopwords')
     stops = set(stopwords.words("english"))
     filtered_words = [w for w in words if w not in stops]
@@ -46,7 +45,7 @@ def create_word_cloud_html(
         print("Please Enter Output File with extension .html")
         sys.exit(0)
 
-    #random.shuffle(count_dict)
+
     frequencies = [count_dict[pair] for pair in count_dict.keys()]
     minFreq = min(frequencies)
     maxFreq = max(frequencies)
@@ -78,13 +77,17 @@ def create_word_cloud_html(
     visibility: hidden;
     display: inline-block;
     color: blue;
-    top:30px;
-    left:80px;
-    /* Position the tooltip */
+    top: 30px;
+    left: 80px;
     position: absolute;
     z-index: 1;
-    border:1px solid #ddd;
-    padding:10px;
+    border: 1px solid #ddd;
+    padding: 1px;
+    font-size: 20px !important;
+    /* width: 120px; */
+    /* top: 100%; */
+    /* left: 50%; */
+    margin-left: -60px;
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;
@@ -107,11 +110,16 @@ color: white;
     )
     
     script = (
+        
     """function shuffle(e){
+    var ani=["zoomIn", "rollIn", "slideInLeft", "slideInUp", "rotateIn", "bounceIn", "bounceInUp", "bounceInDown"]
+anima=ani[getRandom(ani.length-1)]
  var parent = $("#box");
     var spans = parent.children();
     while (spans.length) {
-        parent.append(spans.splice(Math.floor(Math.random() * spans.length), 1)[0]);
+    var span= spans.splice(Math.floor(Math.random() * spans.length), 1)[0]
+    span.setAttribute('class','animated '+anima)
+        parent.append(span);
     }
 }
 
@@ -127,6 +135,7 @@ while (i!=spans.length){
     span=span.firstElementChild
     var colorIndex = Math.floor(Math.random() * colorlist.length);
     span.setAttribute('style','color:'+colorlist[colorIndex]+'!important')
+  
     }
     i++;
 }
@@ -134,7 +143,7 @@ while (i!=spans.length){
 
 function pop(e){
 var elements = document.getElementById('box').children;
-  if(elements.length  == 1)
+  if(elements.length  == 0)
     return;
 
   elements[getRandom(elements.length-1)].remove();
@@ -153,12 +162,14 @@ var elements = document.getElementById('box').children;
     colsize = len(colors)
     index = 0
     k = 0
+    ani=["zoomIn", "rollIn", "slideInLeft", "slideInUp", "rotateIn", "bounceIn", "bounceInUp", "bounceInDown"]
+    animation=random.choice(ani)
     for tag, freq in count_dict.items():
         index += 1
 
         # span += '<a href=#><span class="word'+str(index)+'" id="tag'+str(index)+'">&nbsp;' + tag + "&nbsp;</span></a>\n"
         span += (
-            '<a href=""><span class="word'
+            '<a href="" class = "animated  '+animation+'"><span class="word'
             + str(index)
             + ' tooltip", id="tag'
             + str(index)
@@ -205,6 +216,7 @@ var elements = document.getElementById('box').children;
         message = (
             """
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
         <style type="text/css">
         """
             + css
@@ -236,11 +248,6 @@ if __name__ == "__main__":
     file_name = "beemovie.txt"
     output_file = "result.html"
     total_words, word_co = get_words_count(file_name, n_highest=100)
-    print(word_co)
-    isinstance(word_co,list)
-    #print(sum(word_co.values()))
-    print(len(word_co))
-    print(total_words)
     create_word_cloud_html(word_co, output_file)
     webbrowser.open(output_file)
 
