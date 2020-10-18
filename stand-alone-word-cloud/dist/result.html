@@ -1,0 +1,505 @@
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+            <style type="text/css">
+            #box{font-family:'calibri';border:2px solid black;background: black;display: block;width:1000px;height:1000px}
+        #box a{text-decoration : none}
+        a{
+        display:inline-block;
+      text-decoration:none !important;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    display: inline-block;
+    color: blue;
+    top: 30px;
+    left: 80px;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid #ddd;
+    padding: 1px;
+    font-size: 20px !important;
+    /* width: 120px; */
+    /* top: 100%; */
+    /* left: 50%; */
+    margin-left: -60px;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+color:white
+}
+.button{
+background-color: #FF8C00;
+color: white;
+}
+.button2{
+background-color: #000080;
+color: white;
+}
+.button3{
+background-color: #f44336;
+color: white;
+}
+
+#tag1{font-size: 3.5em;color: #607ec5}
+#tag1:hover{color:red}
+#tag2{font-size: 2.25em;color: #86a0dc}
+#tag2:hover{color:red}
+#tag3{font-size: 1.0em;color: #4c6db9}
+#tag3:hover{color:red}
+#tag4{font-size: 2.25em;color: red}
+#tag4:hover{color:red}
+#tag5{font-size: 1.0em;color: orange}
+#tag5:hover{color:red}
+#tag6{font-size: 1.0em;color: cyan}
+#tag6:hover{color:red}
+#tag7{font-size: 6.0em;color: green}
+#tag7:hover{color:red}
+#tag8{font-size: 1.0em;color: yellow}
+#tag8:hover{color:red}
+#tag9{font-size: 3.5em;color: magenta}
+#tag9:hover{color:red}
+#tag10{font-size: 1.0em;color: #607ec5}
+#tag10:hover{color:red}
+#tag11{font-size: 1.0em;color: #86a0dc}
+#tag11:hover{color:red}
+#tag12{font-size: 1.0em;color: #4c6db9}
+#tag12:hover{color:red}
+#tag13{font-size: 1.0em;color: red}
+#tag13:hover{color:red}
+#tag14{font-size: 1.0em;color: orange}
+#tag14:hover{color:red}
+#tag15{font-size: 2.25em;color: cyan}
+#tag15:hover{color:red}
+#tag16{font-size: 2.25em;color: green}
+#tag16:hover{color:red}
+#tag17{font-size: 1.0em;color: yellow}
+#tag17:hover{color:red}
+#tag18{font-size: 6.0em;color: magenta}
+#tag18:hover{color:red}
+#tag19{font-size: 3.5em;color: #607ec5}
+#tag19:hover{color:red}
+#tag20{font-size: 2.25em;color: #86a0dc}
+#tag20:hover{color:red}
+#tag21{font-size: 1.0em;color: #4c6db9}
+#tag21:hover{color:red}
+#tag22{font-size: 3.5em;color: red}
+#tag22:hover{color:red}
+#tag23{font-size: 1.0em;color: orange}
+#tag23:hover{color:red}
+#tag24{font-size: 1.0em;color: cyan}
+#tag24:hover{color:red}
+#tag25{font-size: 1.0em;color: green}
+#tag25:hover{color:red}
+#tag26{font-size: 1.0em;color: yellow}
+#tag26:hover{color:red}
+#tag27{font-size: 3.5em;color: magenta}
+#tag27:hover{color:red}
+#tag28{font-size: 2.25em;color: #607ec5}
+#tag28:hover{color:red}
+#tag29{font-size: 1.0em;color: #86a0dc}
+#tag29:hover{color:red}
+#tag30{font-size: 1.0em;color: #4c6db9}
+#tag30:hover{color:red}
+#tag31{font-size: 1.0em;color: red}
+#tag31:hover{color:red}
+#tag32{font-size: 3.5em;color: orange}
+#tag32:hover{color:red}
+#tag33{font-size: 1.0em;color: cyan}
+#tag33:hover{color:red}
+#tag34{font-size: 1.0em;color: green}
+#tag34:hover{color:red}
+#tag35{font-size: 1.0em;color: yellow}
+#tag35:hover{color:red}
+#tag36{font-size: 1.0em;color: magenta}
+#tag36:hover{color:red}
+#tag37{font-size: 3.5em;color: #607ec5}
+#tag37:hover{color:red}
+#tag38{font-size: 1.0em;color: #86a0dc}
+#tag38:hover{color:red}
+#tag39{font-size: 1.0em;color: #4c6db9}
+#tag39:hover{color:red}
+#tag40{font-size: 1.0em;color: red}
+#tag40:hover{color:red}
+#tag41{font-size: 6.0em;color: orange}
+#tag41:hover{color:red}
+#tag42{font-size: 1.0em;color: cyan}
+#tag42:hover{color:red}
+#tag43{font-size: 1.0em;color: green}
+#tag43:hover{color:red}
+#tag44{font-size: 1.0em;color: yellow}
+#tag44:hover{color:red}
+#tag45{font-size: 1.0em;color: magenta}
+#tag45:hover{color:red}
+#tag46{font-size: 1.0em;color: #607ec5}
+#tag46:hover{color:red}
+#tag47{font-size: 2.25em;color: #86a0dc}
+#tag47:hover{color:red}
+#tag48{font-size: 1.0em;color: #4c6db9}
+#tag48:hover{color:red}
+#tag49{font-size: 2.25em;color: red}
+#tag49:hover{color:red}
+#tag50{font-size: 3.5em;color: orange}
+#tag50:hover{color:red}
+#tag51{font-size: 1.0em;color: cyan}
+#tag51:hover{color:red}
+#tag52{font-size: 3.5em;color: green}
+#tag52:hover{color:red}
+#tag53{font-size: 1.0em;color: yellow}
+#tag53:hover{color:red}
+#tag54{font-size: 1.0em;color: magenta}
+#tag54:hover{color:red}
+#tag55{font-size: 1.0em;color: #607ec5}
+#tag55:hover{color:red}
+#tag56{font-size: 1.0em;color: #86a0dc}
+#tag56:hover{color:red}
+#tag57{font-size: 1.0em;color: #4c6db9}
+#tag57:hover{color:red}
+#tag58{font-size: 1.0em;color: red}
+#tag58:hover{color:red}
+#tag59{font-size: 2.25em;color: orange}
+#tag59:hover{color:red}
+#tag60{font-size: 1.0em;color: cyan}
+#tag60:hover{color:red}
+#tag61{font-size: 2.25em;color: green}
+#tag61:hover{color:red}
+#tag62{font-size: 3.5em;color: yellow}
+#tag62:hover{color:red}
+#tag63{font-size: 2.25em;color: magenta}
+#tag63:hover{color:red}
+#tag64{font-size: 1.0em;color: #607ec5}
+#tag64:hover{color:red}
+#tag65{font-size: 1.0em;color: #86a0dc}
+#tag65:hover{color:red}
+#tag66{font-size: 3.5em;color: #4c6db9}
+#tag66:hover{color:red}
+#tag67{font-size: 1.0em;color: red}
+#tag67:hover{color:red}
+#tag68{font-size: 2.25em;color: orange}
+#tag68:hover{color:red}
+#tag69{font-size: 6.0em;color: cyan}
+#tag69:hover{color:red}
+#tag70{font-size: 1.0em;color: green}
+#tag70:hover{color:red}
+#tag71{font-size: 1.0em;color: yellow}
+#tag71:hover{color:red}
+#tag72{font-size: 1.0em;color: magenta}
+#tag72:hover{color:red}
+#tag73{font-size: 1.0em;color: #607ec5}
+#tag73:hover{color:red}
+#tag74{font-size: 1.0em;color: #86a0dc}
+#tag74:hover{color:red}
+#tag75{font-size: 1.0em;color: #4c6db9}
+#tag75:hover{color:red}
+#tag76{font-size: 1.0em;color: red}
+#tag76:hover{color:red}
+#tag77{font-size: 1.0em;color: orange}
+#tag77:hover{color:red}
+#tag78{font-size: 1.0em;color: cyan}
+#tag78:hover{color:red}
+#tag79{font-size: 1.0em;color: green}
+#tag79:hover{color:red}
+#tag80{font-size: 1.0em;color: yellow}
+#tag80:hover{color:red}
+#tag81{font-size: 1.0em;color: magenta}
+#tag81:hover{color:red}
+#tag82{font-size: 2.25em;color: #607ec5}
+#tag82:hover{color:red}
+#tag83{font-size: 1.0em;color: #86a0dc}
+#tag83:hover{color:red}
+#tag84{font-size: 1.0em;color: #4c6db9}
+#tag84:hover{color:red}
+#tag85{font-size: 1.0em;color: red}
+#tag85:hover{color:red}
+#tag86{font-size: 1.0em;color: orange}
+#tag86:hover{color:red}
+#tag87{font-size: 1.0em;color: cyan}
+#tag87:hover{color:red}
+#tag88{font-size: 2.25em;color: green}
+#tag88:hover{color:red}
+#tag89{font-size: 1.0em;color: yellow}
+#tag89:hover{color:red}
+#tag90{font-size: 1.0em;color: magenta}
+#tag90:hover{color:red}
+#tag91{font-size: 2.25em;color: #607ec5}
+#tag91:hover{color:red}
+#tag92{font-size: 1.0em;color: #86a0dc}
+#tag92:hover{color:red}
+#tag93{font-size: 1.0em;color: #4c6db9}
+#tag93:hover{color:red}
+#tag94{font-size: 6.0em;color: red}
+#tag94:hover{color:red}
+#tag95{font-size: 6.0em;color: orange}
+#tag95:hover{color:red}
+#tag96{font-size: 6.0em;color: cyan}
+#tag96:hover{color:red}
+#tag97{font-size: 1.0em;color: green}
+#tag97:hover{color:red}
+#tag98{font-size: 1.0em;color: yellow}
+#tag98:hover{color:red}
+#tag99{font-size: 1.0em;color: magenta}
+#tag99:hover{color:red}
+#tag100{font-size: 3.5em;color: #607ec5}
+#tag100:hover{color:red}
+
+        </style>
+        <button class ="button" onclick = "shuffle()">Shuffle</button>
+        <button class ="button2" onclick = "col()">Color</button>
+        <button class ="button3" onclick= "pop()">Pop</button>
+        <div id='box'>
+            <a href="" class = "animated  bounceIn"><span class="word1 tooltip", id="tag1">&nbsp;work&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word2 tooltip", id="tag2">&nbsp;right&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word3 tooltip", id="tag3">&nbsp;stairs&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word4 tooltip", id="tag4">&nbsp;school&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word5 tooltip", id="tag5">&nbsp;knows&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word6 tooltip", id="tag6">&nbsp;never&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word7 tooltip", id="tag7">&nbsp;bees&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word8 tooltip", id="tag8">&nbsp;paid&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word9 tooltip", id="tag9">&nbsp;going&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word10 tooltip", id="tag10">&nbsp;second&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word11 tooltip", id="tag11">&nbsp;different&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word12 tooltip", id="tag12">&nbsp;money&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word13 tooltip", id="tag13">&nbsp;hitchhiked&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word14 tooltip", id="tag14">&nbsp;happening&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word15 tooltip", id="tag15">&nbsp;course&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word16 tooltip", id="tag16">&nbsp;good&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word17 tooltip", id="tag17">&nbsp;perfect&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word18 tooltip", id="tag18">&nbsp;know&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word19 tooltip", id="tag19">&nbsp;hive&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word20 tooltip", id="tag20">&nbsp;rest&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word21 tooltip", id="tag21">&nbsp;wings&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word22 tooltip", id="tag22">&nbsp;honex&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word23 tooltip", id="tag23">&nbsp;hear&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word24 tooltip", id="tag24">&nbsp;stop&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word25 tooltip", id="tag25">&nbsp;card&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word26 tooltip", id="tag26">&nbsp;care&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word27 tooltip", id="tag27">&nbsp;pick&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word28 tooltip", id="tag28">&nbsp;fuzz&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word29 tooltip", id="tag29">&nbsp;hang&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word30 tooltip", id="tag30">&nbsp;impossible&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word31 tooltip", id="tag31">&nbsp;graduation&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word32 tooltip", id="tag32">&nbsp;welcome&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word33 tooltip", id="tag33">&nbsp;thought&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word34 tooltip", id="tag34">&nbsp;flies&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word35 tooltip", id="tag35">&nbsp;took&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word36 tooltip", id="tag36">&nbsp;able&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word37 tooltip", id="tag37">&nbsp;three&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word38 tooltip", id="tag38">&nbsp;come&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word39 tooltip", id="tag39">&nbsp;report&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word40 tooltip", id="tag40">&nbsp;house&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word41 tooltip", id="tag41">&nbsp;barry&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word42 tooltip", id="tag42">&nbsp;according&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word43 tooltip", id="tag43">&nbsp;believe&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word44 tooltip", id="tag44">&nbsp;shake&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word45 tooltip", id="tag45">&nbsp;grade&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word46 tooltip", id="tag46">&nbsp;wave&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word47 tooltip", id="tag47">&nbsp;difference&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word48 tooltip", id="tag48">&nbsp;artie&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word49 tooltip", id="tag49">&nbsp;begins&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word50 tooltip", id="tag50">&nbsp;make&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word51 tooltip", id="tag51">&nbsp;laws&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word52 tooltip", id="tag52">&nbsp;days&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word53 tooltip", id="tag53">&nbsp;mustache&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word54 tooltip", id="tag54">&nbsp;frankie&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word55 tooltip", id="tag55">&nbsp;known&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word56 tooltip", id="tag56">&nbsp;breakfast&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word57 tooltip", id="tag57">&nbsp;awkward&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word58 tooltip", id="tag58">&nbsp;glad&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word59 tooltip", id="tag59">&nbsp;every&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word60 tooltip", id="tag60">&nbsp;lint&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word61 tooltip", id="tag61">&nbsp;today&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word62 tooltip", id="tag62">&nbsp;honey&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word63 tooltip", id="tag63">&nbsp;whole&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word64 tooltip", id="tag64">&nbsp;growing&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word65 tooltip", id="tag65">&nbsp;funeral&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word66 tooltip", id="tag66">&nbsp;small&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word67 tooltip", id="tag67">&nbsp;hello&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word68 tooltip", id="tag68">&nbsp;krelman&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word69 tooltip", id="tag69">&nbsp;little&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word70 tooltip", id="tag70">&nbsp;body&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word71 tooltip", id="tag71">&nbsp;everybody&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word72 tooltip", id="tag72">&nbsp;told&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word73 tooltip", id="tag73">&nbsp;thing&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word74 tooltip", id="tag74">&nbsp;back&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word75 tooltip", id="tag75">&nbsp;anyway&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word76 tooltip", id="tag76">&nbsp;college&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word77 tooltip", id="tag77">&nbsp;sorry&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word78 tooltip", id="tag78">&nbsp;father&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word79 tooltip", id="tag79">&nbsp;graduate&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word80 tooltip", id="tag80">&nbsp;around&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word81 tooltip", id="tag81">&nbsp;ground&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word82 tooltip", id="tag82">&nbsp;proud&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word83 tooltip", id="tag83">&nbsp;ready&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word84 tooltip", id="tag84">&nbsp;yeah&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word85 tooltip", id="tag85">&nbsp;humans&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word86 tooltip", id="tag86">&nbsp;looks&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word87 tooltip", id="tag87">&nbsp;high&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word88 tooltip", id="tag88">&nbsp;think&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word89 tooltip", id="tag89">&nbsp;special&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word90 tooltip", id="tag90">&nbsp;sharp&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word91 tooltip", id="tag91">&nbsp;well&nbsp;<span class = "tooltiptext">2 times
+0.567%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word92 tooltip", id="tag92">&nbsp;aviation&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word93 tooltip", id="tag93">&nbsp;ooming&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word94 tooltip", id="tag94">&nbsp;yellow&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word95 tooltip", id="tag95">&nbsp;life&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word96 tooltip", id="tag96">&nbsp;black&nbsp;<span class = "tooltiptext">5 times
+1.416%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word97 tooltip", id="tag97">&nbsp;flying&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word98 tooltip", id="tag98">&nbsp;looking&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word99 tooltip", id="tag99">&nbsp;excited&nbsp;<span class = "tooltiptext">1 times
+0.283%</span></a>
+<a href="" class = "animated  bounceIn"><span class="word100 tooltip", id="tag100">&nbsp;adam&nbsp;<span class = "tooltiptext">3 times
+0.85%</span></a>
+
+
+        </div>
+
+        <script>
+        function shuffle(e){
+        var ani=["zoomIn", "rollIn", "slideInLeft", "slideInUp", "rotateIn", "bounceIn", "bounceInUp", "bounceInDown"]
+    anima=ani[getRandom(ani.length-1)]
+     var parent = $("#box");
+        var spans = parent.children();
+        while (spans.length) {
+        var span= spans.splice(Math.floor(Math.random() * spans.length), 1)[0]
+        span.setAttribute('class','animated '+anima)
+            parent.append(span);
+        }
+    }
+    
+    function col(e){
+    var colorlist=["#607ec5", "#86a0dc", "#4c6db9","red","orange","cyan","green","yellow","magenta"];
+    var parent = $("#box");
+    var spans = parent.children();
+    i=0;
+    while (i!=spans.length){
+        span=spans[i];
+        if (span)
+        {
+        span=span.firstElementChild
+        var colorIndex = Math.floor(Math.random() * colorlist.length);
+        span.setAttribute('style','color:'+colorlist[colorIndex]+'!important')
+    
+        }
+        i++;
+    }
+    }
+    
+    function pop(e){
+    var elements = document.getElementById('box').children;
+      if(elements.length  == 0)
+        return;
+    
+      elements[getRandom(elements.length-1)].remove();
+      if(elements.length > 1){
+        elements[getRandom(elements.length-1)].remove();
+      }
+    
+      }
+      function getRandom(max){
+        return Math.floor(Math.random() * (max - 0 + 1)) + 0;
+    }
+    
+        </script>
+        
